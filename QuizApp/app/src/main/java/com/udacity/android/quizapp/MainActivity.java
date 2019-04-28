@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.ads.doubleclick.PublisherAdRequest;
 import com.google.android.gms.ads.doubleclick.PublisherAdView;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,14 +26,22 @@ public class MainActivity extends AppCompatActivity implements FetchQuizTask.Fet
 
     private Unbinder unbinder;
 
+    private Tracker tracker;
+
     @BindView(R.id.toolbar)
     /*package*/ Toolbar toolbar;
 
     @BindView(R.id.publisherAdView)
     /*package*/ PublisherAdView mPublisherAdView;
 
+    @BindString(R.string.action_play_quiz)
+    /*package*/ String actionPlayQuiz;
+
     @BindString(R.string.message_play_quiz_clicked)
     /*package*/ String playQuizClicked;
+
+    @BindString(R.string.analytics_category_quiz_count)
+    /*package*/ String analyticsCategoryQuizCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +50,10 @@ public class MainActivity extends AppCompatActivity implements FetchQuizTask.Fet
 
         unbinder = ButterKnife.bind(this);
         setSupportActionBar(toolbar);
+
+        // Obtain the shared Tracker instance.
+        AnalyticsApplication application = (AnalyticsApplication) getApplication();
+        tracker = application.getDefaultTracker();
 
         PublisherAdRequest adRequest = new PublisherAdRequest.Builder().build();
         mPublisherAdView.loadAd(adRequest);
@@ -76,6 +90,13 @@ public class MainActivity extends AppCompatActivity implements FetchQuizTask.Fet
 
     @OnClick(R.id.button_play_quiz)
     /*package*/ void onPlayQuizButtonClicked() {
+        tracker.setScreenName("MainActivity");
+        tracker.send(new HitBuilders.EventBuilder()
+                .setCategory(analyticsCategoryQuizCount)
+                .setAction(actionPlayQuiz)
+                .setLabel(actionPlayQuiz)
+                .setValue(1)
+                .build());
         new FetchQuizTask(getApplication(), this).execute();
         Toast.makeText(this, playQuizClicked, Toast.LENGTH_SHORT).show();
     }

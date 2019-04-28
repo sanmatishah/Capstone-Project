@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.udacity.android.quizapp.model.Question;
 
 import java.util.List;
@@ -26,6 +28,8 @@ import static com.udacity.android.quizapp.ResultWidgetProvider.updateAppWidget;
 public class ResultActivity extends AppCompatActivity implements FetchQuizTask.FetchQuizTaskCompletionHandler {
 
     private Unbinder unbinder;
+
+    private Tracker tracker;
 
     @BindView(R.id.toolbar)
     /*package*/ Toolbar toolbar;
@@ -54,6 +58,12 @@ public class ResultActivity extends AppCompatActivity implements FetchQuizTask.F
     @BindString(R.string.message_result_info_never_mind)
     /*package*/ String messageResultInfoNeverMind;
 
+    @BindString(R.string.action_play_quiz)
+    /*package*/ String actionPlayQuiz;
+
+    @BindString(R.string.analytics_category_quiz_count)
+    /*package*/ String analyticsCategoryQuizCount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +72,10 @@ public class ResultActivity extends AppCompatActivity implements FetchQuizTask.F
         unbinder = ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
+
+        // Obtain the shared Tracker instance.
+        AnalyticsApplication application = (AnalyticsApplication) getApplication();
+        tracker = application.getDefaultTracker();
 
         QuestionListViewModel viewModel = ViewModelProviders.of(this).get(QuestionListViewModel.class);
         viewModel.getQuestionListLiveData().observe(this, new Observer<List<Question>>() {
@@ -90,7 +104,14 @@ public class ResultActivity extends AppCompatActivity implements FetchQuizTask.F
     }
 
     @OnClick(R.id.button_play_again)
-        /*package*/ void onPlayAgainButtonClicked() {
+    /*package*/ void onPlayAgainButtonClicked() {
+        tracker.setScreenName("ResultActivity");
+        tracker.send(new HitBuilders.EventBuilder()
+                .setCategory(analyticsCategoryQuizCount)
+                .setAction(actionPlayQuiz)
+                .setLabel(actionPlayQuiz)
+                .setValue(1)
+                .build());
         new FetchQuizTask(getApplication(), this).execute();
     }
 

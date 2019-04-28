@@ -51,4 +51,6 @@
 
     <string name="widget_no_quiz_played">No quiz played!</string>
 
+    <string name="analytics_category_quiz_count" translatable="false">Quiz Count</string>
+
 </resources>
