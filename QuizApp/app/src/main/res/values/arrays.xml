@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="pref_question_count">
+        <item>@string/question_count_10</item>
+        <item>@string/question_count_20</item>
+    </string-array>
+
+    <string-array name="pref_difficulty_level_entries">
+        <item>@string/difficulty_level_label_easy</item>
+        <item>@string/difficulty_level_label_medium</item>
+        <item>@string/difficulty_level_label_hard</item>
+    </string-array>
+
+    <string-array name="pref_difficulty_level_values">
+        <item>@string/difficulty_level_value_easy</item>
+        <item>@string/difficulty_level_value_medium</item>
+        <item>@string/difficulty_level_value_hard</item>
+    </string-array>
+
+    <string-array name="pref_quiz_category_entries">
+        <item>@string/quiz_category_general_knowledge</item>
+        <item>@string/quiz_category_entertainment_books</item>
+        <item>@string/quiz_category_entertainment_film</item>
+        <item>@string/quiz_category_entertainment_music</item>
+        <item>@string/quiz_category_science_computers</item>
+        <item>@string/quiz_category_science_mathematics</item>
+        <item>@string/quiz_category_geography</item>
+        <item>@string/quiz_category_history</item>
+        <item>@string/quiz_category_art</item>
+        <item>@string/quiz_category_animals</item>
+        <item>@string/quiz_category_vehicles</item>
+    </string-array>
+
+    <string-array name="pref_quiz_category_values">
+        <item>@string/default_quiz_category</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>18</item>
+        <item>19</item>
+        <item>22</item>
+        <item>23</item>
+        <item>25</item>
+        <item>27</item>
+        <item>28</item>
+    </string-array>
+
+</resources>

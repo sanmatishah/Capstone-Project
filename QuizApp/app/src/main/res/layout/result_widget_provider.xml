@@ -1,0 +1,29 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_tv_result"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/widget_margin"
+    android:gravity="center"
+    android:background="@color/light_green">
+
+    <TextView
+        android:id="@+id/widget_tv_result_score"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/widget_no_quiz_played"
+        android:theme="@style/ContentText"
+        android:textSize="24sp"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/widget_tv_result_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/widget_tv_result_score"
+        android:text="@string/widget_no_quiz_played"
+        android:theme="@style/ContentText"
+        android:textAlignment="center" />
+
+</RelativeLayout>

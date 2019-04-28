@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListPreference
+        android:key="pref_question_count"
+        android:title="@string/pref_question_count"
+        android:entries="@array/pref_question_count"
+        android:entryValues="@array/pref_question_count"
+        android:defaultValue="@string/question_count_10"
+        android:summary="%s" />
+
+    <ListPreference
+        android:key="pref_difficulty_level"
+        android:title="@string/pref_difficulty_level"
+        android:entries="@array/pref_difficulty_level_entries"
+        android:entryValues="@array/pref_difficulty_level_values"
+        android:defaultValue="@string/difficulty_level_value_easy"
+        android:summary="%s" />
+
+    <ListPreference
+        android:key="pref_quiz_category"
+        android:title="@string/pref_quiz_category"
+        android:entries="@array/pref_quiz_category_entries"
+        android:entryValues="@array/pref_quiz_category_values"
+        android:defaultValue="@string/default_quiz_category"
+        android:summary="%s" />
+
+</PreferenceScreen>
