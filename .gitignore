@@ -1,0 +1,6 @@
+QuizApp/.gradle/*
+QuizApp/.idea/*
+QuizApp/app/app.iml
+QuizApp/app/build/*
+QuizApp/local.properties
+QuizApp/QuizApp.iml
