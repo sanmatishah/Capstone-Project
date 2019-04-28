@@ -6,6 +6,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.doubleclick.PublisherAdRequest;
+import com.google.android.gms.ads.doubleclick.PublisherAdView;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -24,6 +27,9 @@ public class MainActivity extends AppCompatActivity implements FetchQuizTask.Fet
     @BindView(R.id.toolbar)
     /*package*/ Toolbar toolbar;
 
+    @BindView(R.id.publisherAdView)
+    /*package*/ PublisherAdView mPublisherAdView;
+
     @BindString(R.string.message_play_quiz_clicked)
     /*package*/ String playQuizClicked;
 
@@ -34,6 +40,9 @@ public class MainActivity extends AppCompatActivity implements FetchQuizTask.Fet
 
         unbinder = ButterKnife.bind(this);
         setSupportActionBar(toolbar);
+
+        PublisherAdRequest adRequest = new PublisherAdRequest.Builder().build();
+        mPublisherAdView.loadAd(adRequest);
 
         QuizDatabase.getInstance(getApplicationContext());
     }
